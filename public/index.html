@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PowerPulse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,800;1,800&display=swap" rel="stylesheet">
+<style>
+:root{--o:#ff7a1a;--o2:#ffa04d;--accent:#ffc27a;--ink:#190e09;--card:#241812;--line:#3d2b20;--text:#fdf3ea;--muted:#c9b3a3;--bad:#ff7b6b;--good:#6fdc9a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font:15px/1.55 Poppins,system-ui,-apple-system,Segoe UI,sans-serif}
+.hero{min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(900px 520px at 8% 0,#e0670f 0,transparent 62%),linear-gradient(135deg,#c2540f 0,#a02d0b 55%,#5e1807 100%)}
+nav{display:flex;align-items:center;gap:18px;margin:14px auto 0;width:min(1200px,94%);padding:10px 16px;border-radius:18px;background:rgba(28,12,6,.55);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px;text-decoration:none;color:#fff}
+.logo i{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--o);font-style:normal}.logo b{color:var(--o)}
+nav .links{display:flex;gap:6px;margin:0 auto;flex-wrap:wrap}
+nav .links a{color:#f3dccb;text-decoration:none;padding:6px 12px;border-radius:10px;font-weight:600;font-size:14px}
+nav .links a:hover{background:rgba(255,255,255,.12)}
+.badge{font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#ffe2c8;white-space:nowrap}
+.wrap{flex:1;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;width:min(1200px,94%);margin:0 auto;padding:30px 0}
+h1{margin:0 0 18px;font-size:clamp(40px,6.2vw,78px);line-height:1.02;font-weight:800;letter-spacing:-1.5px}
+h1 em{color:var(--accent);font-style:italic}
+.lead{max-width:520px;color:#ffe9d8;margin:0 0 22px;font-size:16px}
+.kick{font-size:12px;letter-spacing:1.6px;font-weight:600;color:#ffd9b8;margin-bottom:10px}
+.pill{display:flex;align-items:center;gap:6px;max-width:560px;padding:6px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(8px)}
+.pill input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font:600 15px Poppins,sans-serif;padding:10px 14px}
+.pill input::placeholder{color:#ffe2c8;opacity:.85}
+button{font-family:inherit;cursor:pointer}
+.go{border:0;border-radius:999px;padding:11px 20px;background:var(--o);color:#1b0c04;font-weight:800;font-size:14px;box-shadow:0 6px 18px rgba(255,122,26,.45)}
+.go:hover{filter:brightness(1.08)}
+.mic{border:0;background:rgba(0,0,0,.28);color:#fff;border-radius:999px;width:42px;height:42px;font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;align-items:center;color:#ffd9b8;font-size:13px}
+.chips button{background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:6px 12px;font-size:13px}
+.chips button:hover{background:rgba(0,0,0,.4)}
+.answer{display:none;max-width:560px;margin-top:18px;padding:14px 16px;border-radius:16px;background:rgba(20,8,3,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-left:4px solid var(--o)}
+.answer p{margin:0 0 10px;font-weight:600;font-size:16px}
+.answer .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;color:#ffd9b8}
+.answer .row button,.answer .row a{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:5px 12px;text-decoration:none;font-size:13px}
+.stage{perspective:1100px;display:grid;place-items:center;min-height:420px}
+.cube{position:relative;width:min(380px,100%);display:flex;flex-direction:column;gap:16px;transform-style:preserve-3d;transform:rotateY(-20deg) rotateX(9deg);animation:float 7s ease-in-out infinite alternate}
+@keyframes float{to{transform:rotateY(-12deg) rotateX(5deg) translateY(-10px)}}
+.g{position:relative;padding:16px 18px;border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.26),rgba(255,255,255,.07));border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(10px);box-shadow:0 24px 50px rgba(40,8,0,.4)}
+.g .t{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;padding:3px 9px;border-radius:999px;background:var(--o);color:#1b0c04}
+.g p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;margin:8px 0 0;font-weight:600;font-size:14px;color:#fff;line-height:1.4}
+.g1{transform:translateZ(50px)}.g2{transform:translateZ(25px)}.g3{transform:translateZ(0)}
+.strip{overflow:hidden;border-top:1px solid rgba(255,255,255,.15);padding:16px 0;background:rgba(20,8,3,.25)}
+.track{display:flex;gap:46px;width:max-content;animation:slide 32s linear infinite;font-weight:800;font-size:18px;color:#ffe2c8;opacity:.85}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.cube,.track{animation:none}}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}.stage{min-height:400px}nav .links{display:none}}
+main{width:min(1200px,94%);margin:0 auto;padding:46px 0 40px}
+main h2{font-size:28px;font-weight:800;margin:0 0 4px}.sub{color:var(--muted);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;overflow:hidden;scroll-margin-top:20px}
+.card h3{margin:0 0 4px;font-size:15px;color:var(--o2)}
+.sp{margin:0 0 10px;color:var(--muted);font-size:13.5px}.wide{grid-column:1/-1}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-weight:600}
+.neg{color:var(--bad)}.pos{color:var(--good)}.err{color:var(--bad)}
+ul.causes{margin:10px 0 0;padding-left:18px}
+form.reply{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+form.reply input,form.reply select{padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#160c07;color:var(--text);font:14px Poppins,sans-serif}
+form.reply button{border:0;border-radius:10px;padding:9px 16px;background:var(--o);color:#1b0c04;font-weight:800}
+textarea{width:100%;min-height:130px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#160c07;color:var(--text);font:14px/1.5 Poppins,sans-serif;resize:vertical}
+.cp{margin-top:6px;background:transparent;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:6px 12px}
+details{margin-top:8px;color:var(--muted);font-size:12.5px}pre{white-space:pre-wrap;word-break:break-word}
+footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 0 30px}
+</style>
+</head>
+<body>
+<section class="hero">
+  <nav>
+    <a class="logo" href="#"><i>⚡</i><span>POWER <b>PULSE</b></span></a>
+    <div class="links"><a href="#c-orders">Orders</a><a href="#c-stock">Stock</a><a href="#c-drop">Sales</a><a href="#c-carts">Carts</a><a href="#c-reply">Replies</a></div>
+    <span class="badge" id="badge">Data: …</span>
+  </nav>
+  <div class="wrap">
+    <div>
+      <h1>Ask your store.<br>Get the answer.<br><em>Act fast.</em></h1>
+      <p class="lead">Made for small sellers with no time for dashboards. Every number comes from your store data, never from AI guesses.</p>
+      <div class="kick">TRY IT NOW: ASK IN 5 SECONDS</div>
+      <div class="pill"><input id="q" placeholder="Why did my sales drop this week?" autocomplete="off"><button class="mic" id="mic" title="Speak">🎤</button><button class="go" id="go">Ask ↗</button></div>
+      <div class="chips" id="chips"><span>or try:</span></div>
+      <div class="answer" id="answer"><p id="answerSpeech"></p><div class="row"><button id="speakBtn">🔊 Read aloud</button><label><input type="checkbox" id="autoSpeak"> Auto-read</label><a href="#dashboard" id="more">Details ↓</a></div></div>
+    </div>
+    <div class="stage"><div class="cube">
+      <div class="g g1"><span class="t">SALES</span><p id="g-sales">Loading…</p></div>
+      <div class="g g2"><span class="t">LOW STOCK</span><p id="g-stock">Loading…</p></div>
+      <div class="g g3"><span class="t">CARTS</span><p id="g-carts">Loading…</p></div>
+    </div></div>
+  </div>
+  <div class="strip"><div class="track" id="track"></div></div>
+</section>
+
+<main id="dashboard">
+  <h2>Your store at a glance</h2><p class="sub">Live answers from the same tools Alexa+ uses through MCP.</p>
+  <div class="grid">
+    <section class="card" id="c-orders"><h3>Recent orders (24h)</h3><p class="sp">Loading…</p></section>
+    <section class="card" id="c-list"><h3>Latest orders</h3><p class="sp">Loading…</p></section>
+    <section class="card" id="c-stock"><h3>Low stock</h3><p class="sp">Loading…</p></section>
+    <section class="card wide" id="c-drop"><h3>Why did sales change? (7 days)</h3><p class="sp">Loading…</p></section>
+    <section class="card" id="c-carts"><h3>Abandoned carts</h3><p class="sp">Loading…</p></section>
+    <section class="card" id="c-reply"><h3>Draft a customer reply</h3><p class="sp">Drafts only. Nothing is sent.</p>
+      <form class="reply" id="replyForm"><input id="orderId" placeholder="Order id" required>
+        <select id="issue"><option value="where_is_my_order">Where is my order?</option><option value="delay">Delay</option><option value="damaged_item">Damaged item</option><option value="refund_request">Refund request</option></select>
+        <button type="submit">Draft</button></form><div id="replyOut"></div></section>
+  </div>
+</main>
+<footer>PowerPulse · MCP endpoint at /mcp · Voice input works best in Chrome</footer>
+<script>
+const $ = (id) => document.getElementById(id);
+const MONEY = new Set(['revenue','value','current','previous','price','total']);
+const money = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
+const esc = (v) => String(v).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+async function callTool(name, args = {}) {
+  const res = await fetch('/api/call', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, arguments: args }) });
+  if (!res.ok) throw new Error('Request failed (' + res.status + ')');
+  const text = (await res.json()).content?.[0]?.text || '';
+  const [speech, evidence] = text.split('\n\nEvidence:\n'); let ev = null; try { ev = JSON.parse(evidence); } catch {}
+  return { speech: speech.trim(), evidence: ev };
+}
+function cell(k, v) {
+  if (v == null) return '–';
+  if (typeof v === 'number') return k === 'changePct' ? `<span class="${v < 0 ? 'neg' : 'pos'}">${v > 0 ? '+' : ''}${v}%</span>` : MONEY.has(k) ? money(v) : v;
+  if (Array.isArray(v)) return v.length + ' items';
+  if (k === 'placedAt') return new Date(v).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' });
+  return typeof v === 'object' ? '' : esc(v);
+}
+function table(rows, skip = []) {
+  if (!rows?.length) return '<p class="sp">Nothing to show.</p>';
+  const keys = Object.keys(rows[0]).filter((k) => !skip.includes(k) && typeof rows[0][k] !== 'object');
+  return `<div class="tw"><table><tr>${keys.map((k) => `<th>${k}</th>`).join('')}</tr>${rows.map((r) => `<tr>${keys.map((k) => `<td>${cell(k, r[k])}</td>`).join('')}</tr>`).join('')}</table></div>`;
+}
+const views = {
+  get_recent_orders: (r) => { const e = r.evidence || {}; return `<p><strong>${e.orderCount ?? 0}</strong> orders · <strong>${money(e.revenue || 0)}</strong></p><p class="sp">${Object.entries(e.byStatus || {}).map(([k, v]) => `${k}: ${v}`).join(' · ')}</p>`; },
+  list_orders: (r) => table(r.evidence),
+  get_low_stock_products: (r) => table(r.evidence, ['id']),
+  analyze_sales_drop: (r) => { const e = r.evidence || {}; const c = (e.causes || []).map((x) => `<li><strong>${esc(x.category)}</strong> (${x.changePct}%): ${esc(x.likelyDrivers.join('; '))}</li>`).join(''); return table(e.categoryChanges || []) + (c ? `<ul class="causes">${c}</ul>` : ''); },
+  find_abandoned_carts: (r) => table(r.evidence, ['items']),
+};
+const targets = { get_recent_orders: ['c-orders', 'Recent orders (24h)', { hours: 24 }], list_orders: ['c-list', 'Latest orders (click an id to draft a reply)', { limit: 8 }], get_low_stock_products: ['c-stock', 'Low stock', {}], analyze_sales_drop: ['c-drop', 'Why did sales change? (7 days)', { days: 7 }], find_abandoned_carts: ['c-carts', 'Abandoned carts', { minHours: 1 }] };
+const glass = { analyze_sales_drop: 'g-sales', get_low_stock_products: 'g-stock', find_abandoned_carts: 'g-carts' };
+async function loadCard(name) {
+  const [id, title, args] = targets[name], el = $(id);
+  try {
+    const r = await callTool(name, args);
+    el.innerHTML = `<h3>${title}</h3><p class="sp">${esc(r.speech)}</p>${views[name](r)}<details><summary>Raw evidence</summary><pre>${esc(JSON.stringify(r.evidence, null, 2))}</pre></details>`;
+    if (glass[name]) { $(glass[name]).textContent = r.speech; $(glass[name]).title = r.speech; }
+    if (name === 'list_orders') el.querySelectorAll('tr td:first-child').forEach((td) => { td.style.cursor = 'pointer'; td.title = 'Use in the reply form'; td.onclick = () => { $('orderId').value = td.textContent; $('c-reply').scrollIntoView({ behavior: 'smooth' }); }; });
+    return r;
+  } catch (e) { el.innerHTML = `<h3>${title}</h3><p class="err">${esc(e.message)}</p>`; }
+}
+let last = '', lastCard = 'c-drop';
+function speak(t) { if (!('speechSynthesis' in window) || !t) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t.replace(/₹/g, 'rupees ')); u.lang = 'en-IN'; speechSynthesis.speak(u); }
+function show(t, card) { last = t; if (card) lastCard = card; $('answerSpeech').textContent = t; $('answer').style.display = 'block'; $('more').href = '#' + lastCard; if ($('autoSpeak').checked) speak(t); }
+$('speakBtn').onclick = () => speak(last);
+async function ask(q) {
+  q = q.trim(); if (!q) return; const l = q.toLowerCase(), id = (q.match(/\b(?:[A-Z]+-)?O\d{3,}\b|\b[0-9a-f]{24}\b/i) || [])[0]; let name = null;
+  if (id && /(reply|customer|refund|where|delay|damag|late|draft)/.test(l)) {
+    $('orderId').value = /^[0-9a-f]{24}$/i.test(id) ? id.toLowerCase() : id.toUpperCase();
+    $('issue').value = /refund|money back/.test(l) ? 'refund_request' : /damag|broken/.test(l) ? 'damaged_item' : /delay|late/.test(l) ? 'delay' : 'where_is_my_order';
+    return draft();
+  }
+  if (/cart|abandon/.test(l)) name = 'find_abandoned_carts';
+  else if (/stock|restock|inventory|running out|reorder|low/.test(l)) name = 'get_low_stock_products';
+  else if (/sales|drop|revenue|fell|decline|down/.test(l)) name = 'analyze_sales_drop';
+  else if (/order ?ids?|latest orders|list|show (me )?(my )?orders|random|any order|which order/.test(l)) name = 'list_orders';
+  else if (/order|today|received|came in/.test(l)) name = 'get_recent_orders';
+  if (!name) return show('Ask about orders, low stock, why sales changed, or abandoned carts. For a reply draft, include an order id.');
+  const r = await loadCard(name); if (r) show(r.speech, targets[name][0]);
+}
+$('go').onclick = () => ask($('q').value);
+$('q').addEventListener('keydown', (e) => { if (e.key === 'Enter') ask($('q').value); });
+['Why did my sales drop?', 'What is running low?', 'Any abandoned carts?', 'How many orders today?'].forEach((t) => { const b = document.createElement('button'); b.textContent = t; b.onclick = () => { $('q').value = t; ask(t); }; $('chips').appendChild(b); });
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (!SR) $('mic').style.display = 'none'; else {
+  const rec = new SR(); rec.lang = 'en-IN'; rec.onresult = (e) => { const t = e.results[0][0].transcript; $('q').value = t; ask(t); };
+  rec.onend = rec.onerror = () => ($('mic').textContent = '🎤'); $('mic').onclick = () => { $('mic').textContent = '…'; try { rec.start(); } catch {} };
+}
+async function draft() {
+  const out = $('replyOut'); out.innerHTML = '<p class="sp">Drafting…</p>';
+  try {
+    const r = await callTool('draft_customer_reply', { orderId: $('orderId').value.trim(), issue: $('issue').value });
+    show(r.speech, 'c-reply');
+    if (!r.evidence?.draft) { out.innerHTML = `<p class="err">${esc(r.speech)}</p>`; return; }
+    out.innerHTML = '<textarea id="dt"></textarea><button class="cp" id="cb">Copy</button> <span class="sp">Review before sending.</span>'; $('dt').value = r.evidence.draft;
+    $('cb').onclick = () => { navigator.clipboard.writeText($('dt').value); $('cb').textContent = 'Copied'; };
+  } catch (e) { out.innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+}
+$('replyForm').addEventListener('submit', (e) => { e.preventDefault(); draft(); });
+const brands = ['Bosch', 'Makita', 'DeWalt', 'Stanley', 'Hilti', 'Black+Decker', 'Milwaukee', 'Metabo'];
+$('track').innerHTML = [...brands, ...brands].map((b) => `<span>${b}</span>`).join('');
+fetch('/health').then((r) => r.json()).then((j) => ($('badge').textContent = 'Data: ' + j.dataSource)).catch(() => ($('badge').textContent = 'Offline'));
+Object.keys(targets).forEach(loadCard);
+</script>
+</body>
+</html>
