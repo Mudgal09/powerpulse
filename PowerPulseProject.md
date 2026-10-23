@@ -1,4 +1,4 @@
-# SellerPulse: Project Summary
+# PowerPulse: Project Summary
 
 > Paste this whole file at the start of a new chat to continue the project with full context.
 > Last updated: 10 Oct 2026 · Owner: Rohit Mudgal
